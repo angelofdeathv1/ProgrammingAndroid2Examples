@@ -18,21 +18,22 @@ public class SensorLight extends Activity implements SensorEventListener {
 
 	private boolean hassensor;
 
-	private final Handler lightEventHandler 				= new Handler() {
-																	@Override
-																	public void handleMessage(Message msg) {
-																		String light = (String) msg.obj;
-																		((TextView) findViewById(R.id.lighttext)).setText(light);
-																	}
-																};
+	private final Handler lightEventHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			String light = (String) msg.obj;
+			((TextView) findViewById(R.id.lighttext)).setText(light);
+		}
+	};
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        if(getLightSensors() == null) {
+		if (getLightSensors() == null) {
 			hassensor = false;
-			Toast.makeText(this, "No Light Sensors Available", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "No Light Sensors Available",
+					Toast.LENGTH_SHORT).show();
 			finish();
 			return;
 		}
@@ -46,7 +47,8 @@ public class SensorLight extends Activity implements SensorEventListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(hassensor) registerListener();
+		if (hassensor)
+			registerListener();
 	}
 
 	@Override
@@ -64,28 +66,30 @@ public class SensorLight extends Activity implements SensorEventListener {
 	private void registerListener() {
 		SensorManager mngr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		List<Sensor> list = getLightSensors();
-		if(list != null) {
-			for(Sensor sensor: list) {
-				mngr.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
+		if (list != null) {
+			for (Sensor sensor : list) {
+				mngr.registerListener(this, sensor,
+						SensorManager.SENSOR_DELAY_UI);
 			}
 		}
 	}
 
 	private void unregisterListener() {
-		if(hassensor) {
+		if (hassensor) {
 			SensorManager mngr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 			mngr.unregisterListener(this);
 		}
 	}
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) { }
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+	}
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		float light = event.values[0];  // Ambient light level in SI lux units
+		float light = event.values[0]; // Ambient light level in SI lux units
 		Message msg = Message.obtain();
-		msg.obj = "Light: "+light+" lx";
+		msg.obj = "Light: " + light + " lx";
 		lightEventHandler.sendMessage(msg);
 	}
 }

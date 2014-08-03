@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, AndroidSyncActivity!</string>
+    <string name="app_name">AppSync</string>
+	
+	<string name="ok_button">OK</string>
+		<string name="result_failed">No se encontro codigo de barras</string>
+	<string name="result_failed_why">"Ningun codigo de barras fue capturado"</string>
+	<string name="result_succeeded">Codigo de barras encontrado</string>
+	<string name="scan_anything">Escanear cualquier codigo</string>
+	<string name="scan_product">Scan product</string>
+	<string name="scan_qr_code">Escanear codigo QR</string>
+	<string name="qrscan">Escanear el numero de socio (*)</string>
+	<string name="takePicture">Total de la compra (*)</string>
+	<string name="saveContact">Guardar</string>
+	<string name="userName">User Name</string>
+	<string name="contructionKind">Datos de la compra</string>
+	<string name="comments">Notas</string>
+	<string name="buttonLogin">Login</string>
+	<string name="emptyField"></string>
+	<string name="PurchaseID">Folio de la compra</string>
+</resources>

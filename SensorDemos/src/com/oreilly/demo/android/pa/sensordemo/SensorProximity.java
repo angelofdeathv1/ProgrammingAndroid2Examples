@@ -18,21 +18,22 @@ public class SensorProximity extends Activity implements SensorEventListener {
 
 	private boolean hassensor;
 
-	private final Handler proxEventHandler 				= new Handler() {
-																	@Override
-																	public void handleMessage(Message msg) {
-																		String prox = (String) msg.obj;
-																		((TextView) findViewById(R.id.proxtext)).setText(prox);
-																	}
-																};
+	private final Handler proxEventHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			String prox = (String) msg.obj;
+			((TextView) findViewById(R.id.proxtext)).setText(prox);
+		}
+	};
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        if(getProximitySensors() == null) {
+		if (getProximitySensors() == null) {
 			hassensor = false;
-			Toast.makeText(this, "No Proximity Sensors Available", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "No Proximity Sensors Available",
+					Toast.LENGTH_SHORT).show();
 			finish();
 			return;
 		}
@@ -46,7 +47,8 @@ public class SensorProximity extends Activity implements SensorEventListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(hassensor) registerListener();
+		if (hassensor)
+			registerListener();
 	}
 
 	@Override
@@ -64,28 +66,30 @@ public class SensorProximity extends Activity implements SensorEventListener {
 	private void registerListener() {
 		SensorManager mngr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		List<Sensor> list = getProximitySensors();
-		if(list != null) {
-			for(Sensor sensor: list) {
-				mngr.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
+		if (list != null) {
+			for (Sensor sensor : list) {
+				mngr.registerListener(this, sensor,
+						SensorManager.SENSOR_DELAY_UI);
 			}
 		}
 	}
 
 	private void unregisterListener() {
-		if(hassensor) {
+		if (hassensor) {
 			SensorManager mngr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 			mngr.unregisterListener(this);
 		}
 	}
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) { }
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+	}
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		float prox = event.values[0];
 		Message msg = Message.obtain();
-		msg.obj = "Proximity: "+prox+" cm";
+		msg.obj = "Proximity: " + prox + " cm";
 		proxEventHandler.sendMessage(msg);
 	}
 }

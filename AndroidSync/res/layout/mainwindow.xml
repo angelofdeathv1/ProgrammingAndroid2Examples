@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <TextView
+        android:id="@+id/TextViewName"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.13"
+        android:text="@string/userName" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/textViewUserName"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:text="TextView" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/TextViewConstructionKind"
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:text="@string/contructionKind" >
+    </TextView>
+
+    <Button
+        android:id="@+id/bScanBarcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/qrscan"
+        android:textSize="18px" >
+    </Button>
+
+    <EditText
+        android:id="@+id/etBarcodeDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/tvPurchaseTotalTitle"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:text="@string/takePicture" />
+
+    <EditText
+        android:id="@+id/etPurchaseTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/tvPurchaseID"
+        android:layout_width="141dp"
+        android:layout_height="wrap_content"
+        android:text="@string/PurchaseID" />
+
+    <EditText
+        android:id="@+id/etPurchaseID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textViewComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/comments" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/etPurchaseNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.22"
+        android:inputType="textMultiLine" >
+    </EditText>
+
+    <Button
+        android:id="@+id/bSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/saveContact"
+        android:textSize="18px" >
+    </Button>
+
+</LinearLayout>

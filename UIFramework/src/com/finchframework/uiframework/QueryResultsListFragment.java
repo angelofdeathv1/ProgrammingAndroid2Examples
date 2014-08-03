@@ -15,7 +15,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class QueryResultsListFragment extends Fragment implements OnItemClickListener{
+public class QueryResultsListFragment extends Fragment implements
+		OnItemClickListener {
 
 	// String for logging the class name
 	private final String TAG = getClass().getSimpleName();
@@ -32,14 +33,15 @@ public class QueryResultsListFragment extends Fragment implements OnItemClickLis
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		// Tell the system we have an options menu
 		this.setHasOptionsMenu(true);
-		
+
 		if (null != savedInstanceState)
 			restoreState(savedInstanceState);
 		// Notification that
-		if (L) Log.i(TAG, "onCreate");
+		if (L)
+			Log.i(TAG, "onCreate");
 	}
 
 	// Factor this out of methods that get saved state
@@ -54,47 +56,55 @@ public class QueryResultsListFragment extends Fragment implements OnItemClickLis
 
 		final ListView list = (ListView) inflater.inflate(
 				R.layout.list_frag_list, container, false);
-		if (L) Log.i(TAG, "onCreateView");
+		if (L)
+			Log.i(TAG, "onCreateView");
 
 		attachAdapter(list);
-	    list.setOnItemClickListener(this);
-	    
+		list.setOnItemClickListener(this);
+
 		return list;
 	}
 
 	public void onStart() {
 		super.onStart();
-		if (L) Log.i(TAG, "onStart");
+		if (L)
+			Log.i(TAG, "onStart");
 	}
 
 	public void onresume() {
 		super.onResume();
-		if (L) Log.i(TAG, "onResume");
+		if (L)
+			Log.i(TAG, "onResume");
 	}
 
 	public void onPause() {
 		super.onPause();
-		if (L) Log.i(TAG, "onPause");
+		if (L)
+			Log.i(TAG, "onPause");
 	}
 
 	public void onStop() {
 		super.onStop();
-		if (L) Log.i(TAG, "onStop");
+		if (L)
+			Log.i(TAG, "onStop");
 	}
 
 	public void onDestroyView() {
 		super.onDestroyView();
-		if (L) Log.i(TAG, "onDestroyView");
+		if (L)
+			Log.i(TAG, "onDestroyView");
 	}
 
 	public void onDestroy() {
 		super.onDestroy();
-		if (L) Log.i(TAG, "onDestroy");
+		if (L)
+			Log.i(TAG, "onDestroy");
 	}
 
 	public void onDetach() {
 		super.onDetach();
-		if (L) Log.i(TAG, "onDetach");
+		if (L)
+			Log.i(TAG, "onDetach");
 	}
 
 	// ////////////////////////////////////////////////////////////////////////////
@@ -103,7 +113,8 @@ public class QueryResultsListFragment extends Fragment implements OnItemClickLis
 
 	public void onActivityCreated() {
 		// Notification that the containing activiy and its View hierarchy exist
-		if (L) Log.i(TAG, "onActivityCreated");
+		if (L)
+			Log.i(TAG, "onActivityCreated");
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////
@@ -125,37 +136,35 @@ public class QueryResultsListFragment extends Fragment implements OnItemClickLis
 		if (L)
 			Log.i(TAG, "onLowMemory");
 	}
-	
-	
-	///////////////////////////////////////////////////////////////////////////////
+
+	// /////////////////////////////////////////////////////////////////////////////
 	// Menu handling code
-	///////////////////////////////////////////////////////////////////////////////
-	
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search_menu, menu);
-    }
-    
+	// /////////////////////////////////////////////////////////////////////////////
+
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.search_menu, menu);
+	}
+
 	// ////////////////////////////////////////////////////////////////////////////
 	// App-specific code
 	// ////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * Attach an adapter that loads the data to the specified list
+	 * 
 	 * @param list
 	 */
 	private void attachAdapter(final ListView list) {
-		
+
 		// Make a trivial adapter that loads an array of strings
-		ArrayAdapter<String> numbers = new ArrayAdapter<String>(
-				list.getContext().getApplicationContext(),
-                android.R.layout.simple_list_item_1, 
-                new String [] {
-                "one", "two", "three", "four", "five", "six"
-	        });
-		
+		ArrayAdapter<String> numbers = new ArrayAdapter<String>(list
+				.getContext().getApplicationContext(),
+				android.R.layout.simple_list_item_1, new String[] { "one",
+						"two", "three", "four", "five", "six" });
+
 		// tell the list to use it
-        list.setAdapter(numbers);
-        // l.setOnItemClickListener(this);
+		list.setAdapter(numbers);
+		// l.setOnItemClickListener(this);
 	}
 
 	// ////////////////////////////////////////////////////////////////////////////
@@ -163,18 +172,17 @@ public class QueryResultsListFragment extends Fragment implements OnItemClickLis
 	// ////////////////////////////////////////////////////////////////////////////
 
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
-		// As an example of sending data to our fragments, we will create a bundle
+	public void onItemClick(AdapterView<?> arg0, View view, int position,
+			long id) {
+		// As an example of sending data to our fragments, we will create a
+		// bundle
 		// with an int and a string, based on which view was clicked
 		Bundle b = new Bundle();
 		int ordinal = position + 1;
 		b.putInt("place", ordinal);
 		b.putString("placeName", Integer.toString(ordinal));
 		TabManager.loadTabFragments(getActivity(), b);
-		
-	}
-    
-    
 
+	}
 
 }

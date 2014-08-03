@@ -95,7 +95,7 @@ public class TabManager {
 	private static void doLoad(Activity activity, int n, Bundle data) {
 		int i;
 		ActionBar actionBar = activity.getActionBar();
-		
+
 		for (i = 0; i < n; i++) {
 			SetData f = (SetData) actionBar.getTabAt(i).getTag();
 			f.setData(data);

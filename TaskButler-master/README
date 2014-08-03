@@ -1,0 +1,47 @@
+*******************************************************************************
+* TASK BUTLER - A task organization app for Android                           *
+*******************************************************************************
+
+Task Butler is a personal assistant app that helps keep your life organized. 
+Use Task Butler to keep track of all of your shopping, errands, bills, to-do 
+lists, and more. You can group your tasks into categories to create sub-lists 
+of similar tasks. You can assign due dates to tasks, and Task Butler will 
+remind you when it's time to complete them. For an especially time-sensitive 
+task, use the procrastination alarm and Task Butler will make sure you finish 
+it!
+
+Features
+* Create tasks as simply or as detailed as you want
+* Create color-coded categories to group tasks into separate lists
+* Let Task Butler automatically sort your task list, or define your own custom 
+  sorting parameters
+* Assign due dates, due date repetition, and procrastination alarms to tasks
+* Lightweight and low on system resources
+
+*******************************************************
+* Building from source - required 3rd party libraries *
+*******************************************************
+
+ActionBarSherlock - http://actionbarsherlock.com/
+AndroidColorPicker - http://code.google.com/p/android-color-picker/
+
+***********************
+* Copyright & license *
+***********************
+
+Copyright 2012 Jonathan Hasenzahl, James Celona, Dhimitraq Jorgji
+ 
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+App and notification icons by Camille Hennessy - http://milliebotdesigns.com/

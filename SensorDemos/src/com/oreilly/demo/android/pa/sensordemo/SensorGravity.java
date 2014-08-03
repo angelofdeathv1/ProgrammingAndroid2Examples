@@ -18,23 +18,27 @@ public class SensorGravity extends Activity implements SensorEventListener {
 
 	private boolean hassensor;
 
-	private final Handler gravityEventHandler 				= new Handler() {
-																	@Override
-																	public void handleMessage(Message msg) {
-																		Bundle data = msg.getData();
-																		((TextView) findViewById(R.id.gravityxtext)).setText(data.getString("x"));
-																		((TextView) findViewById(R.id.gravityytext)).setText(data.getString("y"));
-																		((TextView) findViewById(R.id.gravityztext)).setText(data.getString("z"));
-																	}
-																};
+	private final Handler gravityEventHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			Bundle data = msg.getData();
+			((TextView) findViewById(R.id.gravityxtext)).setText(data
+					.getString("x"));
+			((TextView) findViewById(R.id.gravityytext)).setText(data
+					.getString("y"));
+			((TextView) findViewById(R.id.gravityztext)).setText(data
+					.getString("z"));
+		}
+	};
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        if(getGravitySensors() == null) {
+		if (getGravitySensors() == null) {
 			hassensor = false;
-			Toast.makeText(this, "No Gravity Sensors Available", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "No Gravity Sensors Available",
+					Toast.LENGTH_SHORT).show();
 			finish();
 			return;
 		}
@@ -48,7 +52,8 @@ public class SensorGravity extends Activity implements SensorEventListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(hassensor) registerListener();
+		if (hassensor)
+			registerListener();
 	}
 
 	@Override
@@ -66,22 +71,24 @@ public class SensorGravity extends Activity implements SensorEventListener {
 	private void registerListener() {
 		SensorManager mngr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		List<Sensor> list = getGravitySensors();
-		if(list != null) {
-			for(Sensor sensor: list) {
-				mngr.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
+		if (list != null) {
+			for (Sensor sensor : list) {
+				mngr.registerListener(this, sensor,
+						SensorManager.SENSOR_DELAY_UI);
 			}
 		}
 	}
 
 	private void unregisterListener() {
-		if(hassensor) {
+		if (hassensor) {
 			SensorManager mngr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 			mngr.unregisterListener(this);
 		}
 	}
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) { }
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+	}
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
@@ -90,9 +97,9 @@ public class SensorGravity extends Activity implements SensorEventListener {
 		float gz = event.values.length > 2 ? event.values[2] : 0;
 
 		Bundle data = new Bundle();
-		data.putString("x", "Gravity X: "+gx+" m/s^2");
-		data.putString("y", "Gravity Y: "+gy+" m/s^2");
-		data.putString("z", "Gravity Z: "+gz+" m/s^2");
+		data.putString("x", "Gravity X: " + gx + " m/s^2");
+		data.putString("y", "Gravity Y: " + gy + " m/s^2");
+		data.putString("z", "Gravity Z: " + gz + " m/s^2");
 		Message msg = Message.obtain();
 		msg.setData(data);
 		gravityEventHandler.sendMessage(msg);

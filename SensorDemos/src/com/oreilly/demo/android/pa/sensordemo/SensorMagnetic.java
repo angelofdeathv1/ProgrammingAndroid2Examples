@@ -18,23 +18,27 @@ public class SensorMagnetic extends Activity implements SensorEventListener {
 
 	private boolean hassensor;
 
-	private final Handler magneticEventHandler 				= new Handler() {
-																	@Override
-																	public void handleMessage(Message msg) {
-																		Bundle data = msg.getData();
-																		((TextView) findViewById(R.id.magxtext)).setText(data.getString("x"));
-																		((TextView) findViewById(R.id.magytext)).setText(data.getString("y"));
-																		((TextView) findViewById(R.id.magztext)).setText(data.getString("z"));
-																	}
-																};
+	private final Handler magneticEventHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			Bundle data = msg.getData();
+			((TextView) findViewById(R.id.magxtext)).setText(data
+					.getString("x"));
+			((TextView) findViewById(R.id.magytext)).setText(data
+					.getString("y"));
+			((TextView) findViewById(R.id.magztext)).setText(data
+					.getString("z"));
+		}
+	};
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        if(getMagneticSensors() == null) {
+		if (getMagneticSensors() == null) {
 			hassensor = false;
-			Toast.makeText(this, "No Magnetic Sensors Available", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "No Magnetic Sensors Available",
+					Toast.LENGTH_SHORT).show();
 			finish();
 			return;
 		}
@@ -48,7 +52,8 @@ public class SensorMagnetic extends Activity implements SensorEventListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(hassensor) registerListener();
+		if (hassensor)
+			registerListener();
 	}
 
 	@Override
@@ -66,22 +71,24 @@ public class SensorMagnetic extends Activity implements SensorEventListener {
 	private void registerListener() {
 		SensorManager mngr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		List<Sensor> list = getMagneticSensors();
-		if(list != null) {
-			for(Sensor sensor: list) {
-				mngr.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
+		if (list != null) {
+			for (Sensor sensor : list) {
+				mngr.registerListener(this, sensor,
+						SensorManager.SENSOR_DELAY_UI);
 			}
 		}
 	}
 
 	private void unregisterListener() {
-		if(hassensor) {
+		if (hassensor) {
 			SensorManager mngr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 			mngr.unregisterListener(this);
 		}
 	}
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) { }
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+	}
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
@@ -90,9 +97,9 @@ public class SensorMagnetic extends Activity implements SensorEventListener {
 		float magz = event.values.length > 2 ? event.values[2] : 0;
 
 		Bundle data = new Bundle();
-		data.putString("x", "Mag X: "+magx+" uT");
-		data.putString("y", "Mag Y: "+magy+" uT");
-		data.putString("z", "Mag Z: "+magz+" uT");
+		data.putString("x", "Mag X: " + magx + " uT");
+		data.putString("y", "Mag Y: " + magy + " uT");
+		data.putString("z", "Mag Z: " + magz + " uT");
 		Message msg = Message.obtain();
 		msg.setData(data);
 		magneticEventHandler.sendMessage(msg);

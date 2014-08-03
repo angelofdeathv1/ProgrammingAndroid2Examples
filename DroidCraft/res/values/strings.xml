@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DroidCraft</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_guild_level_chart">Guild Level Distribution</string>
+	<string name="btn_display">Display</string>
+	<string name="hint_realm">Insert your realm</string>
+	<string name="hint_guild">Insert your guild</string>
+	
+</resources>

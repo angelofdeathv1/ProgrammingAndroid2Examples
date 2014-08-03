@@ -1,0 +1,4 @@
+
+    <resources>
+        <string name="API_Listar">http://sicopre_teambox.s3.amazonaws.com/list.json</string>
+    </resources>

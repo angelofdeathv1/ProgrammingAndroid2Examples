@@ -18,21 +18,22 @@ public class SensorTemp extends Activity implements SensorEventListener {
 
 	private boolean hassensor;
 
-	private final Handler tempEventHandler 				= new Handler() {
-																	@Override
-																	public void handleMessage(Message msg) {
-																		String temp = (String) msg.obj;
-																		((TextView) findViewById(R.id.temptext)).setText(temp);
-																	}
-																};
+	private final Handler tempEventHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			String temp = (String) msg.obj;
+			((TextView) findViewById(R.id.temptext)).setText(temp);
+		}
+	};
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        if(getTempSensors() == null) {
+		if (getTempSensors() == null) {
 			hassensor = false;
-			Toast.makeText(this, "No Temperature Sensors Available", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "No Temperature Sensors Available",
+					Toast.LENGTH_SHORT).show();
 			finish();
 			return;
 		}
@@ -46,7 +47,8 @@ public class SensorTemp extends Activity implements SensorEventListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(hassensor) registerListener();
+		if (hassensor)
+			registerListener();
 	}
 
 	@Override
@@ -64,28 +66,30 @@ public class SensorTemp extends Activity implements SensorEventListener {
 	private void registerListener() {
 		SensorManager mngr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		List<Sensor> list = getTempSensors();
-		if(list != null) {
-			for(Sensor sensor: list) {
-				mngr.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
+		if (list != null) {
+			for (Sensor sensor : list) {
+				mngr.registerListener(this, sensor,
+						SensorManager.SENSOR_DELAY_UI);
 			}
 		}
 	}
 
 	private void unregisterListener() {
-		if(hassensor) {
+		if (hassensor) {
 			SensorManager mngr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 			mngr.unregisterListener(this);
 		}
 	}
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) { }
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+	}
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		float temp = event.values[0];
 		Message msg = Message.obtain();
-		msg.obj = "Temp: "+temp+" C";
+		msg.obj = "Temp: " + temp + " C";
 		tempEventHandler.sendMessage(msg);
 	}
 }
